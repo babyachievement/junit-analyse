@@ -132,6 +132,12 @@ public class FrameworkMethod extends FrameworkMember<FrameworkMethod> {
         new NoGenericTypeParametersValidator(method).validate(errors);
     }
 
+    /**
+     * 处理子类方法隐藏父类方法的问题
+     * 遍历所有父类的测试方法，但是如果子类的方法隐藏了父类的方法，则父类的方法不会被执行
+     * @param other
+     * @return
+     */
     @Override
     public boolean isShadowedBy(FrameworkMethod other) {
         if (!other.getName().equals(getName())) {

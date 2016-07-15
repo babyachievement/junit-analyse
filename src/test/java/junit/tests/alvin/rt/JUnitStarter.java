@@ -35,6 +35,9 @@ public class JUnitStarter {
         }
 
         final ArrayList listeners = new ArrayList();
+        /**
+         * 根据参数判断是不是Junit4
+         */
         boolean isJUnit4 = processParameters(argList, listeners);
 
         if (!canWorkWithJUnitVersion(err, isJUnit4)) {
@@ -48,6 +51,9 @@ public class JUnitStarter {
 
         String[] array = new String[argList.size()];
         argList.copyInto(array);
+        /**
+         *  准备并开始执行
+         */
         int exitCode = prepareStreamsAndStart(array, isJUnit4, listeners, out, err);
         System.exit(exitCode);
     }
@@ -173,6 +179,9 @@ public class JUnitStarter {
                     return JUnitForkedStarter.startForkedVMs(ourWorkingDirs, args, isJUnit4, listeners, out, err, ourForkMode, ourCommandFileName);
                 }
             }
+            /**
+             * 交给IdeaTestRunner的相应的子类去执行
+             */
             IdeaTestRunner testRunner = (IdeaTestRunner)getAgentClass(isJUnit4).newInstance();
             testRunner.setStreams(out, err, 0);
             return testRunner.startRunnerWithArgs(args, listeners, !SM_RUNNER);

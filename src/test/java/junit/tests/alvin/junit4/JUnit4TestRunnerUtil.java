@@ -157,6 +157,7 @@ public class JUnit4TestRunnerUtil {
           catch (Throwable e) {
             //ignore
           }
+          // 从这返回一个Request
           return Request.method(clazz, methodName);
         }
         appendTestClass(result, suiteClassName);

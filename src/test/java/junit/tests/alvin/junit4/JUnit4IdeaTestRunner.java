@@ -36,6 +36,9 @@ public class JUnit4IdeaTestRunner implements IdeaTestRunner {
 
   public int startRunnerWithArgs(String[] args, ArrayList listeners, boolean sendTree) {
 
+    /**
+     * 根据参数构建Request
+     */
     final Request request = JUnit4TestRunnerUtil.buildRequest(args, sendTree);
     if (request == null) return -1;
     final Runner testRunner = request.getRunner();
